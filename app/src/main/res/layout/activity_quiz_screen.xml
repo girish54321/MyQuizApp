@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="12dp"
+    tools:context=".QuizScreen">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:background="@drawable/border_radis"
+            android:layout_margin="12dp"
+            android:padding="12dp"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginTop="12dp"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="Level: Hard" />
+            <TextView
+                android:textColor="@color/white"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Which of the following battles is often considered as marking the beginning of the fall of the Western Roman Empire?" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginHorizontal="9dp"
+        android:layout_height="wrap_content">
+        <ProgressBar
+            style="@android:style/Widget.Holo.ProgressBar.Horizontal"
+            android:id="@+id/progressBar1"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:progress="40"/>
+        <TextView
+            android:text="4/10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="12dp"
+        android:orientation="vertical"
+        android:layout_height="wrap_content" >
+        <TextView
+            android:layout_width="match_parent"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textAlignment="center"
+            android:text="Battle of Adrianople"
+            android:padding="12dp"
+            android:background="@drawable/border_radis"
+            android:textColor="@color/white"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:textAlignment="center"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:text="Battle of Adrianople"
+            android:padding="12dp"
+            android:background="@drawable/border_radis"
+            android:textColor="@color/white"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:textAlignment="center"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:text="Battle of Adrianople"
+            android:padding="12dp"
+            android:background="@drawable/border_radis"
+            android:textColor="@color/white"
+            />
+        <TextView
+            android:background="@drawable/border_radis"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:layout_marginTop="22dp"
+            android:text="Battle of Adrianople"
+            android:padding="12dp"
+            />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
