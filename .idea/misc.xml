@@ -5,7 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable/border_radis.xml" value="0.121" />
         <entry key="app/src/main/res/layout/activity_create_quiz.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_quiz_screen.xml" value="0.25" />
         <entry key="app/src/main/res/layout/drop_down_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/dropdown.xml" value="0.1" />

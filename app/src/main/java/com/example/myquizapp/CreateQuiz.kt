@@ -18,7 +18,7 @@ class CreateQuiz : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_quiz)
 
-        val diffcultyTextView= findViewById<AutoCompleteTextView>(R.id.diffcultyDropDown)
+        val diffcultyTextView = findViewById<AutoCompleteTextView>(R.id.diffcultyDropDown)
         var inputText = findViewById<AppCompatEditText>(R.id.numberOfQution)
 
         val categoryTextView = findViewById<AutoCompleteTextView>(R.id.categoryDropDown)

@@ -14,103 +14,145 @@ object Constants {
         return questionsList
     }
 
+
+    fun getQuestions(): List<QuestionList> {
+        var qList = listOf(
+            QuestionList(
+                "Entertainment: Cartoon & Animations",
+                "multiple",
+                "medium",
+                "What is the fourth book of the Old Testament?",
+                "Numbers",
+                arrayOf("Genesis", "Exodus", "Leviticus")
+            ),
+            QuestionList(
+                "General Knowledge",
+                "multiple",
+                "easy",
+                "What alcoholic drink is made from molasses?",
+                "Rum",
+                arrayOf("Gin", "Vodka", "Whisky")
+            ),
+            QuestionList(
+                "Geography",
+                "multiple",
+                "medium",
+                "What is the capital of Australia?",
+                "Canberra",
+                arrayOf("Sydney", "Melbourne", "Brisbane"
+                )
+            ),
+            QuestionList(
+                "History",
+                "multiple",
+                "medium",
+                "Which of the following battles is often considered as marking the beginning of the fall of the Western Roman Empire?",
+                "Battle of Adrianople",
+                arrayOf("Battle of Thessalonica", "Battle of Pollentia", "Battle of Constantinople")
+            )
+        )
+        return qList
+    }
+
     fun getCategory(): List<Category> {
-        var categoryList = listOf(Category (
-            "General Knowledge",
-            9
-        ),
-            Category (
+        var categoryList = listOf(
+            Category(
+                "General Knowledge",
+                9
+            ),
+            Category(
                 "Entertainment: Books",
                 10
             ),
-            Category (
+            Category(
                 "Entertainment: Film",
                 11
             ),
-            Category (
+            Category(
                 "Entertainment: Music",
                 12
             ),
-            Category (
+            Category(
                 "Entertainment: Musicals &amp; Theatres",
                 13
             ),
-            Category (
+            Category(
                 "Entertainment: Television",
                 14
             ),
-            Category (
+            Category(
                 "Entertainment: Video Games",
                 15
             ),
-            Category (
+            Category(
                 "Entertainment: Board Games",
                 16
             ),
-            Category (
+            Category(
                 "Science &amp; Nature",
                 17
             ),
-            Category (
+            Category(
                 "Science: Computers",
                 18
             ),
-            Category (
+            Category(
                 "Science: Mathematics",
                 19
             ),
-            Category (
+            Category(
                 "Mythology",
                 20
             ),
-            Category (
+            Category(
                 "Sports",
                 21
             ),
-            Category (
+            Category(
                 "Geography",
                 22
             ),
-            Category (
+            Category(
                 "History",
                 23
             ),
-            Category (
+            Category(
                 "Politics",
                 24
             ),
-            Category (
+            Category(
                 "Art",
                 25
             ),
-            Category (
+            Category(
                 "Celebrities",
                 26
             ),
-            Category (
+            Category(
                 "Animals",
                 27
             ),
-            Category (
+            Category(
                 "Vehicles",
                 28
             ),
-            Category (
+            Category(
                 "Entertainment: Comics",
                 29
             ),
-            Category (
+            Category(
                 "Science: Gadgets",
                 30
             ),
-            Category (
+            Category(
                 "Entertainment: Japanese Anime & Manga",
                 31
             ),
-            Category (
+            Category(
                 "Entertainment: Cartoon & Animations",
                 32
-            ))
+            )
+        )
 
         return categoryList.toList()
     }
