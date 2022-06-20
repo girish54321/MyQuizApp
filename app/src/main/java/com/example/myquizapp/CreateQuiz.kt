@@ -1,45 +1,49 @@
 package com.example.myquizapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatEditText
 import com.example.myquizapp.adapter.CategoryDropDownAdapter
 import com.example.myquizapp.const.Category
-import com.example.myquizapp.const.Cities
 import com.example.myquizapp.const.Constants
+import com.example.myquizapp.databinding.ActivityCreateQuizBinding
 
 class CreateQuiz : AppCompatActivity() {
 
-    var difficultyTypeList = arrayOf("Easy","Medium","Hard")
-    var categoryList = Constants.getCategory()
+    private var difficultyTypeList = arrayOf("Easy","Medium","Hard")
+    private var categoryList = Constants.getCategory()
+
+    private var binding: ActivityCreateQuizBinding? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_create_quiz)
+        binding = ActivityCreateQuizBinding.inflate(layoutInflater)
+        setContentView(binding?.root)
 
-        val diffcultyTextView = findViewById<AutoCompleteTextView>(R.id.diffcultyDropDown)
-        var inputText = findViewById<AppCompatEditText>(R.id.numberOfQution)
+        binding?.startBtn?.setOnClickListener {
+            val intent = Intent(this, QuizScreen::class.java)
+            startActivity(intent)
+        }
 
-        val categoryTextView = findViewById<AutoCompleteTextView>(R.id.categoryDropDown)
-        val typeTextView = findViewById<AutoCompleteTextView>(R.id.typeDropDown)
-
-        this?.let { ctx ->
+        this.let { ctx ->
             val cityAdapter =
                 CategoryDropDownAdapter(ctx, R.layout.dropp, categoryList)
-            categoryTextView.setAdapter(cityAdapter)
-            categoryTextView.setOnItemClickListener { parent, _, position, _ ->
+            binding?.categoryDropDown?.setAdapter(cityAdapter)
+            binding?.categoryDropDown?.setOnItemClickListener { parent, _, position, _ ->
                 val city = cityAdapter.getItem(position) as Category?
-                categoryTextView.setText(city?.title)
+                binding?.categoryDropDown?.setText(city?.title)
             }
         }
 
         val adapter = ArrayAdapter(this,
             android.R.layout.simple_list_item_1, difficultyTypeList)
-        diffcultyTextView.setAdapter(adapter)
+        binding?.diffcultyDropDown?.setAdapter(adapter)
 
-        var typeAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, difficultyTypeList)
-        typeTextView.setAdapter(typeAdapter)
+        val typeAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, difficultyTypeList)
+        binding?.typeDropDown?.setAdapter(typeAdapter)
     }
 
 }

@@ -1,15 +1,12 @@
 package com.example.myquizapp
 
-import android.content.Intent
-import android.graphics.Color
+import android.annotation.SuppressLint
 import android.graphics.Typeface
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
-import android.widget.AutoCompleteTextView
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
@@ -34,7 +31,6 @@ class QuizScreen : AppCompatActivity(), View.OnClickListener {
     var currentIndex : Int = 0
 
     var questionData : List<QuestionList>? = Constants.getQuestions()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz_screen)
@@ -62,10 +58,11 @@ class QuizScreen : AppCompatActivity(), View.OnClickListener {
         setViewWithQuestions()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setViewWithQuestions(){
-        var data : QuestionList = questionData!![currentIndex]
+        val data : QuestionList = questionData!![currentIndex]
 
-        leve?.text = data.difficulty
+        leve?.text = "LEVEL: ${data.difficulty.uppercase()}"
         questionText?.text = data.question
 
         question1Text?.text = data.incorrect_answers[0]
@@ -124,9 +121,15 @@ class QuizScreen : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    private  fun isCompeted(): Boolean {
+       var isLast: Boolean = false
+        isLast = questionData?.size  == (currentIndex + 1)
+        return isLast
+    }
+
 
     private fun showNextQuestion(){
-        if (questionData?.size  == (currentIndex + 1)){
+        if (isCompeted()){
             Toast.makeText(this,"All Done Here!",Toast.LENGTH_LONG).show()
             return
         }
@@ -139,14 +142,17 @@ class QuizScreen : AppCompatActivity(), View.OnClickListener {
     private fun selectedOptionView(tv: TextView, selectedOptionNum: Int) {
         defaultOptionsView()
         Log.d(TAG, tv.text as String)
-//        tv.setTextColor(
-//            Color.parseColor("#363A43")
-//        )
-//        tv.setTypeface(tv.typeface, Typeface.BOLD)
-        tv.background = ContextCompat.getDrawable(
-            this,
-            R.color.black
-        )
+        if (tv.text == questionData?.get(currentIndex)?.correct_answer){
+            tv.background = ContextCompat.getDrawable(
+                this,
+                R.drawable.right_answer_view
+            )
+        } else {
+            tv.background = ContextCompat.getDrawable(
+                this,
+                R.drawable.worng_answer_view
+            )
+        }
         showNextQuestion()
     }
 
