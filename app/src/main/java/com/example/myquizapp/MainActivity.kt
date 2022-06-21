@@ -4,21 +4,24 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.widget.LinearLayoutCompat
+import com.example.myquizapp.databinding.ActivityCreateQuizBinding
+import com.example.myquizapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private var binding: ActivityMainBinding? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding?.root)
 
-        var createQuizBtn = findViewById<LinearLayoutCompat>(R.id.createQuizBtn)
-        var anyTopicQuizBtn = findViewById<LinearLayoutCompat>(R.id.anyTopicQuizBtn)
-
-        createQuizBtn.setOnClickListener {
+        binding?.createQuizBtn?.setOnClickListener {
             val intent = Intent(this, CreateQuiz::class.java)
             startActivity(intent)
         }
 
-        anyTopicQuizBtn.setOnClickListener {
+        binding?.anyTopicQuizBtn?.setOnClickListener {
             val intent = Intent(this, QuizScreen::class.java)
             startActivity(intent)
         }

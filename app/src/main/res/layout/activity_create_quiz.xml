@@ -41,8 +41,7 @@
                           android:imeOptions="actionGo"
                           android:hint="Number of question"
                           android:inputType="number"
-                          android:textColor="#363A43"
-                          android:textColorHint="#7A8089" />
+                         />
                   </com.google.android.material.textfield.TextInputLayout>
                   <com.google.android.material.textfield.TextInputLayout
                       android:id="@+id/menu"

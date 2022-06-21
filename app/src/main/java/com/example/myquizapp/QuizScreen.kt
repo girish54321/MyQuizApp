@@ -13,47 +13,27 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.myquizapp.const.Constants
 import com.example.myquizapp.const.QuestionList
+import com.example.myquizapp.databinding.ActivityQuizScreenBinding
 
 var TAG : String = "QuizScreen"
 
 class QuizScreen : AppCompatActivity(), View.OnClickListener {
-
-    var leve : TextView? = null
-    var questionText : TextView? = null
-    var question2Text : TextView? = null
-    var question3Text : TextView? = null
-    var question4Text : TextView? = null
-    var question1Text : TextView? = null
-
-    var completedProgress : ProgressBar? = null
-    var completedText : TextView? = null
-
+    private var binding: ActivityQuizScreenBinding? = null
     var currentIndex : Int = 0
-
     var questionData : List<QuestionList>? = Constants.getQuestions()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_quiz_screen)
+        binding = ActivityQuizScreenBinding.inflate(layoutInflater)
+        setContentView(binding?.root)
         setView()
     }
 
-    fun setView (){
-        leve = findViewById<TextView>(R.id.leveText)
-        questionText = findViewById<TextView>(R.id.questionText)
+    private fun setView (){
 
-        question1Text = findViewById<TextView>(R.id.question1Text)
-        question2Text = findViewById<TextView>(R.id.question2Text)
-        question3Text = findViewById<TextView>(R.id.question3Text)
-        question4Text = findViewById<TextView>(R.id.question4Text)
-
-        completedProgress = findViewById<ProgressBar>(R.id.completedProgress)
-        completedProgress?.max = questionData!!.size
-        completedText = findViewById<TextView>(R.id.completedText)
-
-        question1Text?.setOnClickListener ( this )
-        question2Text?.setOnClickListener ( this )
-        question3Text?.setOnClickListener ( this )
-        question4Text?.setOnClickListener ( this )
+        binding?.question1Text?.setOnClickListener ( this )
+        binding?.question2Text?.setOnClickListener ( this )
+        binding?.question3Text?.setOnClickListener ( this )
+        binding?.question4Text?.setOnClickListener ( this )
 
         setViewWithQuestions()
     }
@@ -62,28 +42,28 @@ class QuizScreen : AppCompatActivity(), View.OnClickListener {
     private fun setViewWithQuestions(){
         val data : QuestionList = questionData!![currentIndex]
 
-        leve?.text = "LEVEL: ${data.difficulty.uppercase()}"
-        questionText?.text = data.question
+        binding?.leveText?.text = "LEVEL: ${data.difficulty.uppercase()}"
+        binding?.questionText?.text = data.question
 
-        question1Text?.text = data.incorrect_answers[0]
-        question2Text?.text = data.incorrect_answers[1]
-        question3Text?.text = data.incorrect_answers[2]
-        question4Text?.text = data.correct_answer
+        binding?.question1Text?.text = data.incorrect_answers[0]
+        binding?.question2Text?.text = data.incorrect_answers[1]
+        binding?.question3Text?.text = data.incorrect_answers[2]
+        binding?.question4Text?.text = data.correct_answer
 
-        completedProgress?.progress = currentIndex + 1
-        completedText?.text = "${currentIndex + 1} / ${questionData!!.size}"
+        binding?.completedProgress?.progress = currentIndex + 1
+        binding?.completedText?.text = "${currentIndex + 1} / ${questionData!!.size}"
 
         val options = ArrayList<TextView>()
-        question1Text?.let {
+        binding?.question1Text?.let {
             options.add(0, it)
         }
-        question2Text?.let {
+        binding?.question2Text?.let {
             options.add(1, it)
         }
-        question3Text?.let {
+        binding?.question3Text?.let {
             options.add(2, it)
         }
-        question4Text?.let {
+        binding?.question4Text?.let {
             options.add(3,it)
         }
 
@@ -99,16 +79,16 @@ class QuizScreen : AppCompatActivity(), View.OnClickListener {
 
     private fun defaultOptionsView() {
         val options = ArrayList<TextView>()
-        question1Text?.let {
+        binding?.question1Text?.let {
             options.add(0, it)
         }
-        question2Text?.let {
+        binding?.question2Text?.let {
             options.add(1, it)
         }
-        question3Text?.let {
+        binding?.question3Text?.let {
             options.add(2, it)
         }
-        question4Text?.let {
+        binding?.question4Text?.let {
             options.add(3,it)
         }
         for (option in options) {
@@ -160,22 +140,22 @@ class QuizScreen : AppCompatActivity(), View.OnClickListener {
         Log.d(TAG, Constants.getQuestions()[0].question)
         when (view?.id) {
             R.id.question1Text -> {
-                question1Text?.let {
+                binding?.question1Text?.let {
                    selectedOptionView(it,1)
                }
             }
             R.id.question2Text -> {
-                question2Text?.let {
+                binding?.question2Text?.let {
                     selectedOptionView(it,1)
                 }
             }
             R.id.question3Text -> {
-                question3Text?.let {
+                binding?.question3Text?.let {
                     selectedOptionView(it,1)
                 }
             }
             R.id.question4Text -> {
-                question4Text?.let {
+                binding?.question4Text?.let {
                     selectedOptionView(it,1)
                 }
             }
