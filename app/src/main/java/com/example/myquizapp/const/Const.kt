@@ -7,14 +7,14 @@ object Constants {
     const val CORRECT_ANSWERS: String = "correct_answers"
 
     fun getQuestions(): List<QuestionList> {
-        var qList = listOf(
+        var qList = mutableListOf(
             QuestionList(
                 "Entertainment: Cartoon & Animations",
                 "multiple",
                 "medium",
                 "What is the fourth book of the Old Testament?",
                 "Numbers",
-                arrayOf("Genesis", "Exodus", "Leviticus")
+                mutableListOf("Genesis", "Exodus", "Leviticus")
             ),
             QuestionList(
                 "General Knowledge",
@@ -22,7 +22,7 @@ object Constants {
                 "easy",
                 "What alcoholic drink is made from molasses?",
                 "Rum",
-                arrayOf("Gin", "Vodka", "Whisky")
+                mutableListOf("Gin", "Vodka", "Whisky")
             ),
             QuestionList(
                 "Geography",
@@ -30,8 +30,7 @@ object Constants {
                 "medium",
                 "What is the capital of Australia?",
                 "Canberra",
-                arrayOf("Sydney", "Melbourne", "Brisbane"
-                )
+                mutableListOf("Sydney", "Melbourne", "Brisbane")
             ),
             QuestionList(
                 "History",
@@ -39,7 +38,7 @@ object Constants {
                 "medium",
                 "Which of the following battles is often considered as marking the beginning of the fall of the Western Roman Empire?",
                 "Battle of Adrianople",
-                arrayOf("Battle of Thessalonica", "Battle of Pollentia", "Battle of Constantinople")
+                mutableListOf("Battle of Thessalonica", "Battle of Pollentia", "Battle of Constantinople")
             )
         )
         return qList

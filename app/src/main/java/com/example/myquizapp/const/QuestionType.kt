@@ -13,10 +13,18 @@ data class Category(
 )
 
 data class QuestionList(
-    val category : String,
-    val type : String,
-    val difficulty : String,
-    val question : String,
-    val correct_answer : String,
-    val incorrect_answers : Array<String>
+    val category: String,
+    val type: String,
+    val difficulty: String,
+    val question: String,
+    val correct_answer: String,
+    val incorrect_answers: MutableList<String>,
+    var answersList: MutableList<Answers> = arrayListOf()
 )
+
+data class Answers (
+    val title: String,
+    val isSelected: Boolean = false,
+    val isCorrectAnswers: Boolean = false
+)
+
