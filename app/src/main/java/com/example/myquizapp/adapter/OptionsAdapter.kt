@@ -1,9 +1,12 @@
 package com.example.myquizapp.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myquizapp.R
 import com.example.myquizapp.const.Answers
 import com.example.myquizapp.databinding.QuizItemsBinding
 
@@ -44,7 +47,19 @@ class OptionsAdapter(val items: MutableList<Answers>, private val listener: OnIt
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var modalItem: Answers =  items[position]
-        holder.text.text = modalItem.title
+        holder.text.root.text = modalItem.title
+
+        if (modalItem.isCorrectAnswers == true){
+//            holder.text.setTextColor(Color.GREEN)
+            holder.text.root.setBackgroundResource(R.drawable.right_answer_view)
+        }else if (!modalItem.isCorrectAnswers && modalItem.isSelected){
+//            holder.text.setTextColor(Color.RED)
+            holder.text.root.setBackgroundResource(R.drawable.worng_answer_view)
+
+        }
+//        else {
+//            holder.text.setTextColor(Color.RED)
+//        }
     }
 
     override fun getItemCount(): Int {

@@ -123,6 +123,9 @@ class QuizScreen : AppCompatActivity(), View.OnClickListener , OptionsAdapter.On
     private fun showNextQuestion(){
         if (isCompeted()){
             Toast.makeText(this,"All Done Here!",Toast.LENGTH_LONG).show()
+            Handler().postDelayed({
+                finish()
+            }, 2000)
             return
         }
         currentIndex += 1
@@ -174,11 +177,23 @@ class QuizScreen : AppCompatActivity(), View.OnClickListener , OptionsAdapter.On
 //        }
     }
 
+    private fun onSelectItem(position: Int){
+        questionData[currentIndex].answersList[position].isSelected = true
+        var rightAnswer = questionData[currentIndex].correct_answer
+        var selectedAnswer = questionData[currentIndex].answersList[position]
+        questionData[currentIndex].answersList[position].isSelected = true
+        if (rightAnswer == selectedAnswer.title){
+            questionData[currentIndex].answersList[position].isCorrectAnswers = true
+            Toast.makeText(this, "Right Answer Bro / Sis", Toast.LENGTH_SHORT).show()
+        }else {
+            questionData[currentIndex].answersList[position].isCorrectAnswers = false
+            Toast.makeText(this, "Dam! you missed", Toast.LENGTH_SHORT).show()
+        }
+        optionsAdapter?.notifyDataSetChanged()
+        showNextQuestion()
+    }
+
     override fun onItemClick(position: Int) {
-        println(position)
-        currentIndex += 1
-        Handler().postDelayed({
-            setViewWithQuestions()
-        }, 2000)
+        onSelectItem(position)
     }
 }
