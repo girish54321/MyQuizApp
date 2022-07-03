@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, CreateQuiz::class.java)
             startActivity(intent)
         }
-
         binding?.anyTopicQuizBtn?.setOnClickListener {
             val intent = Intent(this, QuizScreen::class.java)
             startActivity(intent)

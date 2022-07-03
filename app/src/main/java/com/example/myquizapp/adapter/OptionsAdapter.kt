@@ -49,17 +49,12 @@ class OptionsAdapter(val items: MutableList<Answers>, private val listener: OnIt
         var modalItem: Answers =  items[position]
         holder.text.root.text = modalItem.title
 
-        if (modalItem.isCorrectAnswers == true){
-//            holder.text.setTextColor(Color.GREEN)
+        if (modalItem.isCorrectAnswers){
             holder.text.root.setBackgroundResource(R.drawable.right_answer_view)
         }else if (!modalItem.isCorrectAnswers && modalItem.isSelected){
-//            holder.text.setTextColor(Color.RED)
             holder.text.root.setBackgroundResource(R.drawable.worng_answer_view)
 
         }
-//        else {
-//            holder.text.setTextColor(Color.RED)
-//        }
     }
 
     override fun getItemCount(): Int {

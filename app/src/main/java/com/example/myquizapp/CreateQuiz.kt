@@ -12,10 +12,8 @@ import com.example.myquizapp.const.Constants
 import com.example.myquizapp.databinding.ActivityCreateQuizBinding
 
 class CreateQuiz : AppCompatActivity() {
-
     private var difficultyTypeList = arrayOf("Easy","Medium","Hard")
     private var categoryList = Constants.getCategory()
-
     private var binding: ActivityCreateQuizBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

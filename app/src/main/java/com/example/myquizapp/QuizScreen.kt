@@ -16,8 +16,6 @@ import com.example.myquizapp.const.Constants
 import com.example.myquizapp.const.QuestionList
 import com.example.myquizapp.databinding.ActivityQuizScreenBinding
 
-var TAG : String = "QuizScreen"
-
 class QuizScreen : AppCompatActivity(), View.OnClickListener , OptionsAdapter.OnItemClickLister{
     private var binding: ActivityQuizScreenBinding? = null
     var currentIndex : Int = 0
@@ -31,11 +29,6 @@ class QuizScreen : AppCompatActivity(), View.OnClickListener , OptionsAdapter.On
     }
 
     private fun setView (){
-
-//        binding?.question1Text?.setOnClickListener ( this )
-//        binding?.question2Text?.setOnClickListener ( this )
-//        binding?.question3Text?.setOnClickListener ( this )
-//        binding?.question4Text?.setOnClickListener ( this )
         binding?.completedProgress?.max = questionData.size
         setViewWithQuestions()
     }
@@ -57,60 +50,6 @@ class QuizScreen : AppCompatActivity(), View.OnClickListener , OptionsAdapter.On
         optionsAdapter?.notifyDataSetChanged()
         binding?.completedText?.text = "${currentIndex + 1} / ${questionData!!.size}"
         binding?.completedProgress?.progress = currentIndex + 1
-//        binding?.question1Text?.text = data.incorrect_answers[0]
-//        binding?.question2Text?.text = data.incorrect_answers[1]
-//        binding?.question3Text?.text = data.incorrect_answers[2]
-//        binding?.question4Text?.text = data.correct_answer
-//
-//        binding?.completedProgress?.progress = currentIndex + 1
-//        binding?.completedText?.text = "${currentIndex + 1} / ${questionData!!.size}"
-//
-//        val options = ArrayList<TextView>()
-//        binding?.question1Text?.let {
-//            options.add(0, it)
-//        }
-//        binding?.question2Text?.let {
-//            options.add(1, it)
-//        }
-//        binding?.question3Text?.let {
-//            options.add(2, it)
-//        }
-//        binding?.question4Text?.let {
-//            options.add(3,it)
-//        }
-//
-//        for (option in options) {
-//            option.typeface = Typeface.DEFAULT
-//            option.background = ContextCompat.getDrawable(
-//                this,
-//                R.drawable.border_radis
-//            )
-//            option.isClickable = true
-//        }
-    }
-
-    private fun defaultOptionsView() {
-//        val options = ArrayList<TextView>()
-//        binding?.question1Text?.let {
-//            options.add(0, it)
-//        }
-//        binding?.question2Text?.let {
-//            options.add(1, it)
-//        }
-//        binding?.question3Text?.let {
-//            options.add(2, it)
-//        }
-//        binding?.question4Text?.let {
-//            options.add(3,it)
-//        }
-//        for (option in options) {
-//            option.typeface = Typeface.DEFAULT
-//            option.background = ContextCompat.getDrawable(
-//                this,
-//                R.drawable.border_radis
-//            )
-//            option.isClickable = false
-//        }
     }
 
     private  fun isCompeted(): Boolean {
@@ -134,49 +73,6 @@ class QuizScreen : AppCompatActivity(), View.OnClickListener , OptionsAdapter.On
         }, 2000)
     }
 
-    private fun selectedOptionView(tv: TextView, selectedOptionNum: Int) {
-        defaultOptionsView()
-        Log.d(TAG, tv.text as String)
-        if (tv.text == questionData?.get(currentIndex)?.correct_answer){
-            tv.background = ContextCompat.getDrawable(
-                this,
-                R.drawable.right_answer_view
-            )
-        } else {
-            tv.background = ContextCompat.getDrawable(
-                this,
-                R.drawable.worng_answer_view
-            )
-        }
-        showNextQuestion()
-    }
-
-    override fun onClick(view: View?) {
-//        Log.d(TAG, Constants.getQuestions()[0].question)
-//        when (view?.id) {
-//            R.id.question1Text -> {
-//                binding?.question1Text?.let {
-//                   selectedOptionView(it,1)
-//               }
-//            }
-//            R.id.question2Text -> {
-//                binding?.question2Text?.let {
-//                    selectedOptionView(it,1)
-//                }
-//            }
-//            R.id.question3Text -> {
-//                binding?.question3Text?.let {
-//                    selectedOptionView(it,1)
-//                }
-//            }
-//            R.id.question4Text -> {
-//                binding?.question4Text?.let {
-//                    selectedOptionView(it,1)
-//                }
-//            }
-//        }
-    }
-
     private fun onSelectItem(position: Int){
         questionData[currentIndex].answersList[position].isSelected = true
         var rightAnswer = questionData[currentIndex].correct_answer
@@ -195,5 +91,9 @@ class QuizScreen : AppCompatActivity(), View.OnClickListener , OptionsAdapter.On
 
     override fun onItemClick(position: Int) {
         onSelectItem(position)
+    }
+
+    override fun onClick(p0: View?) {
+
     }
 }
