@@ -10,7 +10,10 @@ import com.example.myquizapp.R
 import com.example.myquizapp.const.Answers
 import com.example.myquizapp.databinding.QuizItemsBinding
 
-class OptionsAdapter(val items: MutableList<Answers>, private val listener: OnItemClickLister) : RecyclerView.Adapter<OptionsAdapter.ViewHolder>() {
+class OptionsAdapter(
+    val items: MutableList<Answers>,
+    private val listener: OnItemClickLister
+    ) : RecyclerView.Adapter<OptionsAdapter.ViewHolder>() {
 
     inner class ViewHolder(binding: QuizItemsBinding) : RecyclerView.ViewHolder(binding.root), View.OnClickListener{
         var text = binding.questionOptionItem
