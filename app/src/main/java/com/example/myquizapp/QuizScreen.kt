@@ -21,6 +21,7 @@ class QuizScreen : AppCompatActivity(), View.OnClickListener , OptionsAdapter.On
     var currentIndex : Int = 0
     var questionData : List<QuestionList> = Constants.getQuestions()
     var optionsAdapter : OptionsAdapter? = null
+    var isLoading : Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityQuizScreenBinding.inflate(layoutInflater)
@@ -46,6 +47,7 @@ class QuizScreen : AppCompatActivity(), View.OnClickListener , OptionsAdapter.On
         data.answersList.shuffle()
         binding?.qptionList?.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         optionsAdapter = data.answersList?.let { OptionsAdapter(it,this) }
+        isLoading = false
         binding?.qptionList?.adapter = optionsAdapter
         optionsAdapter?.notifyDataSetChanged()
         binding?.completedText?.text = "${currentIndex + 1} / ${questionData!!.size}"
@@ -60,6 +62,7 @@ class QuizScreen : AppCompatActivity(), View.OnClickListener , OptionsAdapter.On
 
 
     private fun showNextQuestion(){
+        isLoading = true
         if (isCompeted()){
             Toast.makeText(this,"All Done Here!",Toast.LENGTH_LONG).show()
             Handler().postDelayed({
@@ -74,6 +77,9 @@ class QuizScreen : AppCompatActivity(), View.OnClickListener , OptionsAdapter.On
     }
 
     private fun onSelectItem(position: Int){
+        if (isLoading){
+            return
+        }
         questionData[currentIndex].answersList[position].isSelected = true
         var rightAnswer = questionData[currentIndex].correct_answer
         var selectedAnswer = questionData[currentIndex].answersList[position]
