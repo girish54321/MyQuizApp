@@ -6,27 +6,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import com.example.myquizapp.apiClinet.TriviaCategories
 import com.example.myquizapp.R
-import com.example.myquizapp.const.Category
-import com.example.myquizapp.const.Cities
 
 class CategoryDropDownAdapter(
     private val mContext: Context,
     private val mLayoutResourceId: Int,
-    cities: List<Category>
+    cities: List<TriviaCategories>
 ) :
-    ArrayAdapter<Category>(mContext, mLayoutResourceId, cities) {
-    private val city: MutableList<Category> = ArrayList(cities)
-    private var allCities: List<Category> = ArrayList(cities)
+    ArrayAdapter<TriviaCategories>(mContext, mLayoutResourceId, cities) {
+    private val city: MutableList<TriviaCategories> = ArrayList(cities)
 
     override fun getCount(): Int {
         return city.size
     }
-    override fun getItem(position: Int): Category {
+    override fun getItem(position: Int): TriviaCategories {
         return city[position]
     }
     override fun getItemId(position: Int): Long {
-        return city[position].value.toLong()
+        return city[position].id
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -36,9 +34,9 @@ class CategoryDropDownAdapter(
             convertView = inflater.inflate(mLayoutResourceId, parent, false)
         }
         try {
-            val city: Category = getItem(position)
+            val city: TriviaCategories = getItem(position)
             val cityAutoCompleteView = convertView!!.findViewById<View>(R.id.droptext) as TextView
-            cityAutoCompleteView.text = city.title
+            cityAutoCompleteView.text = city.name
         } catch (e: Exception) {
             e.printStackTrace()
         }

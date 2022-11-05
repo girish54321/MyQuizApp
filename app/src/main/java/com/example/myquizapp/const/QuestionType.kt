@@ -28,3 +28,12 @@ data class Answers (
     var isCorrectAnswers: Boolean = false
 )
 
+data class Difficulty (
+    val title: String,
+    val value: String
+)
+
+data class QuestionsType (
+    val title: String,
+    val value: String
+)

@@ -9,41 +9,56 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myquizapp.adapter.OptionsAdapter
+import com.example.myquizapp.apiClinet.RetrofitInstance
 import com.example.myquizapp.const.Answers
 import com.example.myquizapp.const.Constants
 import com.example.myquizapp.const.QuestionList
 import com.example.myquizapp.databinding.ActivityQuizScreenBinding
+import com.example.myquizapp.modal.QuestionsBase
+import com.example.myquizapp.modal.Results
+import retrofit2.HttpException
+import java.io.IOException
 
 class QuizScreen : AppCompatActivity(), View.OnClickListener , OptionsAdapter.OnItemClickLister{
+    private var TAG = "QuizScreen"
     private var binding: ActivityQuizScreenBinding? = null
     var currentIndex : Int = 0
-    var questionData : List<QuestionList> = Constants.getQuestions()
+    private var questionData : ArrayList<Results?>? = null
     var optionsAdapter : OptionsAdapter? = null
+    var userScore: Int = 0
     var isLoading : Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityQuizScreenBinding.inflate(layoutInflater)
         setContentView(binding?.root)
-        setView()
+        getUpComeData()
+    }
+
+    private fun getUpComeData(){
+        val questionsBase: QuestionsBase? = intent.getSerializableExtra("questionsBase") as QuestionsBase
+        if(questionsBase != null){
+            questionData = questionsBase!!.results as ArrayList<Results?>?
+            setView()
+        }
     }
 
     private fun setView (){
-        binding?.completedProgress?.max = questionData.size
+        binding?.completedProgress?.max = questionData!!.size
         setViewWithQuestions()
     }
 
-    @SuppressLint("SetTextI18n")
     private fun setViewWithQuestions(){
-        var data : QuestionList = questionData!![currentIndex]
+        var data : Results = questionData!![currentIndex]!!
 
-        binding?.leveText?.text = "LEVEL: ${data.difficulty.uppercase()}"
+        binding?.leveText?.text = "LEVEL: ${data.difficulty!!.uppercase()}"
         binding?.questionText?.text = data.question
-        for (item in data.incorrect_answers){
+        for (item in data.incorrectAnswers){
             data.answersList.add(Answers(item))
         }
-        data.answersList.add(Answers(data.correct_answer))
+        data.answersList.add(Answers(data.correctAnswer!!))
         data.answersList.shuffle()
         binding?.qptionList?.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         optionsAdapter = data.answersList?.let { OptionsAdapter(it,this) }
@@ -80,16 +95,16 @@ class QuizScreen : AppCompatActivity(), View.OnClickListener , OptionsAdapter.On
         if (isLoading){
             return
         }
-        questionData[currentIndex].answersList[position].isSelected = true
-        var rightAnswer = questionData[currentIndex].correct_answer
-        var selectedAnswer = questionData[currentIndex].answersList[position]
-        questionData[currentIndex].answersList[position].isSelected = true
+        questionData!![currentIndex]!!.answersList[position].isSelected = true
+        var rightAnswer = questionData!![currentIndex]!!.correctAnswer
+        var selectedAnswer = questionData!![currentIndex]!!.answersList[position]
+        questionData!![currentIndex]!!.answersList[position].isSelected = true
         if (rightAnswer == selectedAnswer.title){
-            questionData[currentIndex].answersList[position].isCorrectAnswers = true
-            Toast.makeText(this, "Right Answer Bro / Sis", Toast.LENGTH_SHORT).show()
+            questionData!![currentIndex]!!.answersList[position].isCorrectAnswers = true
+            userScore += 1
+            binding?.userScore?.text = "$userScore / 10"
         }else {
-            questionData[currentIndex].answersList[position].isCorrectAnswers = false
-            Toast.makeText(this, "Dam! you missed", Toast.LENGTH_SHORT).show()
+            questionData!![currentIndex]!!.answersList[position].isCorrectAnswers = false
         }
         optionsAdapter?.notifyDataSetChanged()
         showNextQuestion()

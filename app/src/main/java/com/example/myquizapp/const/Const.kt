@@ -44,6 +44,23 @@ object Constants {
         return qList
     }
 
+    fun getDifficulty(): List<Difficulty> {
+        var difficultys = listOf(
+            Difficulty("Easy","easy"),
+            Difficulty("Medium","medium"),
+            Difficulty("Hard","hard")
+        )
+        return difficultys
+    }
+
+    fun getQuestionsTypeList(): List<QuestionsType> {
+        var questionsType = listOf(
+            QuestionsType("Multiple Choice","multiple"),
+            QuestionsType("True / False","boolean")
+        )
+        return questionsType
+    }
+
     fun getCategory(): List<Category> {
         var categoryList = listOf(
             Category(

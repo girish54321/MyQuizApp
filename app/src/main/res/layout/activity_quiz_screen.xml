@@ -67,12 +67,13 @@
       android:id="@+id/qptionList"
       />
     <TextView
+        android:id="@+id/userScore"
         style="@style/TextAppearance.AppCompat.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="32dp"
         android:gravity="center"
-        android:text="4/10"
+        android:text="0 / 10"
         android:textSize="28sp" />
 </androidx.appcompat.widget.LinearLayoutCompat>
