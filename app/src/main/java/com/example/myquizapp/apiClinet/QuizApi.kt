@@ -14,4 +14,12 @@ interface QuizApi {
     suspend fun getRandomQuestion(
         @Query("amount") latitude: Int
     ): Response<QuestionsBase>
+
+    @GET("api.php")
+    suspend fun getCutomQuestion(
+        @Query("amount") amount: String,
+        @Query("category") category: Long,
+        @Query("difficulty") difficulty: String,
+        @Query("type") type: String
+    ): Response<QuestionsBase>
 }

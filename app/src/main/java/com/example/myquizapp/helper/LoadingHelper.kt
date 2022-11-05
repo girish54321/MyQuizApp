@@ -13,8 +13,8 @@ object LoadingScreen {
     var dialog: ProgressDialog? = null //obj
     fun displayLoadingWithText(context: Context?, text: String?, cancelable: Boolean) { // function -- context(parent (reference))
         dialog = ProgressDialog(context!!)
-        dialog!!.setTitle("Kotlin Progress Bar")
-        dialog!!.setMessage("Application is loading, please wait")
+        dialog!!.setTitle(text)
+        dialog!!.setMessage("Please wait")
 //        dialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
 //        dialog!!.setContentView(R.layout.layout_loading_screen)
 //        dialog!!.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.text.Html
 import android.util.Log
 import android.view.View
 import android.widget.TextView
@@ -39,22 +40,23 @@ class QuizScreen : AppCompatActivity(), View.OnClickListener , OptionsAdapter.On
 
     private fun getUpComeData(){
         val questionsBase: QuestionsBase? = intent.getSerializableExtra("questionsBase") as QuestionsBase
-        if(questionsBase != null){
+        if(questionsBase != null) {
             questionData = questionsBase!!.results as ArrayList<Results?>?
+            binding?.userScore?.text = "$userScore / ${questionData?.size}"
             setView()
         }
     }
 
-    private fun setView (){
+    private fun setView () {
         binding?.completedProgress?.max = questionData!!.size
         setViewWithQuestions()
     }
 
-    private fun setViewWithQuestions(){
+    private fun setViewWithQuestions() {
         var data : Results = questionData!![currentIndex]!!
 
         binding?.leveText?.text = "LEVEL: ${data.difficulty!!.uppercase()}"
-        binding?.questionText?.text = data.question
+        binding?.questionText?.text = Html.fromHtml(data.question)
         for (item in data.incorrectAnswers){
             data.answersList.add(Answers(item))
         }
@@ -74,7 +76,6 @@ class QuizScreen : AppCompatActivity(), View.OnClickListener , OptionsAdapter.On
         isLast = questionData?.size  == (currentIndex + 1)
         return isLast
     }
-
 
     private fun showNextQuestion(){
         isLoading = true
@@ -102,7 +103,7 @@ class QuizScreen : AppCompatActivity(), View.OnClickListener , OptionsAdapter.On
         if (rightAnswer == selectedAnswer.title){
             questionData!![currentIndex]!!.answersList[position].isCorrectAnswers = true
             userScore += 1
-            binding?.userScore?.text = "$userScore / 10"
+            binding?.userScore?.text = "$userScore / ${questionData?.size}"
         }else {
             questionData!![currentIndex]!!.answersList[position].isCorrectAnswers = false
         }

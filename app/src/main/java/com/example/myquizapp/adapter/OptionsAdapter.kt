@@ -1,6 +1,7 @@
 package com.example.myquizapp.adapter
 
 import android.graphics.Color
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,13 +51,11 @@ class OptionsAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var modalItem: Answers =  items[position]
-        holder.text.root.text = modalItem.title
-
+        holder.text.root.text = Html.fromHtml(modalItem.title)
         if (modalItem.isCorrectAnswers){
             holder.text.root.setBackgroundResource(R.drawable.right_answer_view)
-        }else if (!modalItem.isCorrectAnswers && modalItem.isSelected){
+        } else if (!modalItem.isCorrectAnswers && modalItem.isSelected){
             holder.text.root.setBackgroundResource(R.drawable.worng_answer_view)
-
         }
     }
 
