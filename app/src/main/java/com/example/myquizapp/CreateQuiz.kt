@@ -39,8 +39,26 @@ class CreateQuiz : AppCompatActivity() {
         setUpTypeDropDown()
         setUpDiffcultyDropDown()
 
+        setSupportActionBar(binding?.createQuizToolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding?.createQuizToolbar?.setNavigationOnClickListener {
+            onBackPressed()
+        }
+
         binding?.startBtn?.setOnClickListener {
             getQuizQuestion()
+        }
+
+        binding?.categoryDropDown?.setOnClickListener{
+            hideKeyBoard()
+        }
+
+        binding?.diffcultyDropDown?.setOnClickListener{
+            hideKeyBoard()
+        }
+
+        binding?.typeDropDown?.setOnClickListener{
+            hideKeyBoard()
         }
     }
 
@@ -178,7 +196,7 @@ class CreateQuiz : AppCompatActivity() {
     }
     private fun goToNext(questionsBase: QuestionsBase?) {
         if(questionsBase?.results == null || questionsBase.results.size < 1){
-            BasicAlertDialog.displayBasicAlertDialog(this,"Some thing went wrong","Cant create quiz!",false)
+            BasicAlertDialog.displayBasicAlertDialog(this,"You are too smart","Cant create quiz with current selection",false)
             return
         }
         Intent(this, QuizScreen::class.java).also {

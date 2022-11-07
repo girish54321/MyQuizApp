@@ -28,6 +28,12 @@ class QuizScreen : AppCompatActivity(), View.OnClickListener , OptionsAdapter.On
         binding = ActivityQuizScreenBinding.inflate(layoutInflater)
         setContentView(binding?.root)
         getUpComeData()
+
+        setSupportActionBar(binding?.quizScreeToolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding?.quizScreeToolbar?.setNavigationOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun getUpComeData(){
