@@ -1,27 +1,19 @@
 package com.example.myquizapp
 
-import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.text.Html
-import android.util.Log
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myquizapp.adapter.OptionsAdapter
-import com.example.myquizapp.apiClinet.RetrofitInstance
 import com.example.myquizapp.const.Answers
-import com.example.myquizapp.const.Constants
-import com.example.myquizapp.const.QuestionList
 import com.example.myquizapp.databinding.ActivityQuizScreenBinding
+import com.example.myquizapp.modal.DoneDataClass
 import com.example.myquizapp.modal.QuestionsBase
 import com.example.myquizapp.modal.Results
-import retrofit2.HttpException
-import java.io.IOException
 
 class QuizScreen : AppCompatActivity(), View.OnClickListener , OptionsAdapter.OnItemClickLister{
     private var TAG = "QuizScreen"
@@ -82,7 +74,12 @@ class QuizScreen : AppCompatActivity(), View.OnClickListener , OptionsAdapter.On
         if (isCompeted()){
             Toast.makeText(this,"All Done Here!",Toast.LENGTH_LONG).show()
             Handler().postDelayed({
-                finish()
+                var data = DoneDataClass(userScore,"$userScore / ${questionData?.size}")
+                val intent = Intent(this, DoneActivity::class.java).also {
+                    it.putExtra("DONE",data)
+                    startActivity(it)
+                    finish()
+                }
             }, 2000)
             return
         }

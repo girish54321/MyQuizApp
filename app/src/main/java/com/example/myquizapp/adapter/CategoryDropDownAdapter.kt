@@ -35,7 +35,7 @@ class CategoryDropDownAdapter(
         }
         try {
             val city: TriviaCategories = getItem(position)
-            val cityAutoCompleteView = convertView!!.findViewById<View>(R.id.droptext) as TextView
+            val cityAutoCompleteView = convertView!!.findViewById<View>(R.id.girishText) as TextView
             cityAutoCompleteView.text = city.name
         } catch (e: Exception) {
             e.printStackTrace()

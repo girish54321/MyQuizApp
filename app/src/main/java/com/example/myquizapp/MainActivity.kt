@@ -5,11 +5,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.example.myquizapp.apiClinet.RetrofitInstance
 import com.example.myquizapp.databinding.ActivityMainBinding
-import com.example.myquizapp.helper.AppAlertDialog
 import com.example.myquizapp.helper.BasicAlertDialog
 import com.example.myquizapp.helper.LoadingScreen
 import com.example.myquizapp.modal.QuestionsBase

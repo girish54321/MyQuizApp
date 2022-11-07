@@ -1,9 +1,10 @@
 package com.example.myquizapp
-
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -18,7 +19,6 @@ import com.example.myquizapp.helper.LoadingScreen
 import com.example.myquizapp.modal.QuestionsBase
 import retrofit2.HttpException
 import java.io.IOException
-
 
 class CreateQuiz : AppCompatActivity() {
     private val TAG = "CreateQuiz"
@@ -72,12 +72,13 @@ class CreateQuiz : AppCompatActivity() {
 
     private fun setCategoryDropDown(){
         val cityAdapter =
-            CategoryDropDownAdapter(this, R.layout.dropp, data?.triviaCategories!!)
+            CategoryDropDownAdapter(this, R.layout.menu_layout, data?.triviaCategories!!)
         binding?.categoryDropDown?.setAdapter(cityAdapter)
         binding?.categoryDropDown?.setOnItemClickListener { parent, _, position, _ ->
             val data = cityAdapter.getItem(position) as TriviaCategories?
             binding?.categoryDropDown?.setText(data?.name)
             categoryIndex = position
+            hideKeyBoard()
         }
         val difficultyList = ArrayList<String>()
         for (item in Constants.getDifficulty()) {
@@ -88,7 +89,7 @@ class CreateQuiz : AppCompatActivity() {
             questionsTypeList.add(item.title)
         }
         val adapter = ArrayAdapter(this,
-            android.R.layout.simple_list_item_1, difficultyList)
+           android.R.layout.simple_list_item_1, difficultyList)
         binding?.diffcultyDropDown?.setAdapter(adapter)
         typeAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, questionsTypeList)
         binding?.typeDropDown?.setAdapter(typeAdapter)
@@ -96,15 +97,26 @@ class CreateQuiz : AppCompatActivity() {
 
     private fun setUpDiffcultyDropDown(){
         binding?.diffcultyDropDown?.setOnItemClickListener { adapterView, view, i, l ->
-        difficultyIndex = i
+            difficultyIndex = i
+            hideKeyBoard()
         }
     }
 
     private fun setUpTypeDropDown(){
         binding?.typeDropDown?.setOnItemClickListener { adapterView, view, i, l ->
             typeIndex = i
+            hideKeyBoard()
         }
     }
+    private fun hideKeyBoard(){
+        val view: View? = this.currentFocus
+        if (view != null) {
+            val inputMethodManager =
+                getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+        }
+    }
+
 
     private fun checkFormData(): Boolean {
         if(binding?.numberOfQution?.text.toString() == ""){
@@ -135,7 +147,8 @@ class CreateQuiz : AppCompatActivity() {
         LoadingScreen.displayLoadingWithText(this,"Please wait...",false)
         lifecycleScope.launchWhenCreated {
             val response = try {
-                RetrofitInstance.api.getCutomQuestion(binding?.numberOfQution?.text.toString(),
+                RetrofitInstance.api.getCutomQuestion(
+                    binding?.numberOfQution?.text.toString(),
                     data!!.triviaCategories[categoryIndex!!].id,
                     Constants.getDifficulty()[difficultyIndex!!].value,
                     Constants.getQuestionsTypeList()[typeIndex!!].value,
@@ -155,7 +168,6 @@ class CreateQuiz : AppCompatActivity() {
                 val data: QuestionsBase = response.body()!!
                 LoadingScreen.hideLoading()
                 Log.e(TAG, data.results.toString())
-                Log.e(TAG, data.results[0].question!!)
                 goToNext(data)
             } else {
                 LoadingScreen.hideLoading()
@@ -165,6 +177,10 @@ class CreateQuiz : AppCompatActivity() {
         }
     }
     private fun goToNext(questionsBase: QuestionsBase?) {
+        if(questionsBase?.results == null || questionsBase.results.size < 1){
+            BasicAlertDialog.displayBasicAlertDialog(this,"Some thing went wrong","Cant create quiz!",false)
+            return
+        }
         Intent(this, QuizScreen::class.java).also {
             it.putExtra("questionsBase",questionsBase)
             startActivity(it)
