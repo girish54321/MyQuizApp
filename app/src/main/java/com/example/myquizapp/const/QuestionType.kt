@@ -25,7 +25,8 @@ data class QuestionList(
 data class Answers (
     val title: String,
     var isSelected: Boolean = false,
-    var isCorrectAnswers: Boolean = false
+    var isCorrectAnswers: Boolean = false,
+    var correct_answer: String = ""
 )
 
 data class Difficulty (

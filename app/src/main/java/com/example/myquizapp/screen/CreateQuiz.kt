@@ -1,4 +1,4 @@
-package com.example.myquizapp
+package com.example.myquizapp.screen
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.myquizapp.R
 import com.example.myquizapp.apiClinet.trivia_categories
 import com.example.myquizapp.apiClinet.RetrofitInstance
 import com.example.myquizapp.apiClinet.TriviaCategories

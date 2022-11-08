@@ -16,5 +16,6 @@ data class Results (
     @SerializedName("question"          ) var question         : String?           = null,
     @SerializedName("correct_answer"    ) var correctAnswer    : String?           = null,
     @SerializedName("incorrect_answers" ) var incorrectAnswers : ArrayList<String> = arrayListOf(),
+    var completed : Boolean? = null,
     var answersList: MutableList<Answers> = arrayListOf()
 ) : Serializable

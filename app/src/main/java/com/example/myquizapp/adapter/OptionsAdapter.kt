@@ -9,10 +9,13 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myquizapp.R
 import com.example.myquizapp.const.Answers
+import com.example.myquizapp.const.QuestionList
 import com.example.myquizapp.databinding.QuizItemsBinding
+import com.example.myquizapp.modal.Results
 
 class OptionsAdapter(
     val items: MutableList<Answers>,
+    val result: Results,
     private val listener: OnItemClickLister
     ) : RecyclerView.Adapter<OptionsAdapter.ViewHolder>() {
 
@@ -56,6 +59,9 @@ class OptionsAdapter(
             holder.text.root.setBackgroundResource(R.drawable.right_answer_view)
         } else if (!modalItem.isCorrectAnswers && modalItem.isSelected){
             holder.text.root.setBackgroundResource(R.drawable.worng_answer_view)
+        }
+        if(result.correctAnswer == modalItem.title && result.completed == true){
+            holder.text.root.setBackgroundResource(R.drawable.right_answer_view)
         }
     }
 

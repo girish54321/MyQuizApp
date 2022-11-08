@@ -1,4 +1,4 @@
-package com.example.myquizapp
+package com.example.myquizapp.screen
 
 import android.content.Context
 import android.content.Intent
@@ -29,11 +29,6 @@ class MainActivity : AppCompatActivity() {
         }
         binding?.anyTopicQuizBtn?.setOnClickListener {
             getRandomQuestion()
-//            AppAlertDialog.displayLoadingWithText(this,"null","Error Was",true)
-//            {
-//                    dialogInterface , which ->
-//            Toast.makeText(this,"Maonmmmasmamam",Toast.LENGTH_LONG).show()
-//        }
         }
     }
 

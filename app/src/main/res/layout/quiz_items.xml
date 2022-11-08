@@ -6,5 +6,8 @@
     android:layout_height="wrap_content">
     <include
         android:id="@+id/questionOptionItem"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground"
         layout="@layout/option_text_style"/>
 </androidx.appcompat.widget.LinearLayoutCompat>
