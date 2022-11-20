@@ -60,7 +60,7 @@ class QuizScreen : AppCompatActivity(), View.OnClickListener, OptionsAdapter.OnI
     }
 
     private fun setViewWithQuestions() {
-        var data: Results = questionData!![currentIndex]!!
+        val data: Results = questionData!![currentIndex]!!
 
         binding?.leveText?.text = "LEVEL: ${data.difficulty!!.uppercase()}"
         binding?.questionText?.text = Html.fromHtml(data.question)

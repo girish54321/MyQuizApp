@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getRandomQuestion(){
-        var context: Context = this
+        val context: Context = this
         LoadingScreen.displayLoadingWithText(this,"Please wait...",false)
         lifecycleScope.launchWhenCreated {
             val response = try {
