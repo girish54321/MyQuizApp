@@ -6,20 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".screen.DoneActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/doneQuizToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Done"
+        app:titleTextColor="@color/white" />
+
     <TextView
         android:id="@+id/passOrFailed"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:gravity="center"
         android:text="Hello"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/doneQuizToolbar" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieView"

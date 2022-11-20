@@ -13,6 +13,12 @@ class DoneActivity : AppCompatActivity() {
         binding = ActivityDoneBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
+        setSupportActionBar(binding?.doneQuizToolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding?.doneQuizToolbar?.setNavigationOnClickListener {
+            onBackPressed()
+        }
+
         val data: DoneDataClass? = intent.getSerializableExtra("DONE") as DoneDataClass
         if(data != null) {
            binding?.finalScore?.text = data.finalScoreText
