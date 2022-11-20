@@ -5,25 +5,16 @@ object Constants {
     const val USER_NAME: String = "user_name"
     const val TOTAL_QUESTIONS: String = "total_questions"
     const val CORRECT_ANSWERS: String = "correct_answers"
-    fun getQuestionType(): ArrayList<QuestionType> {
-        val questionsList = ArrayList<QuestionType>()
-        val que1 = QuestionType(
-            "Easy"
-        )
-        questionsList.add(que1)
-        return questionsList
-    }
-
 
     fun getQuestions(): List<QuestionList> {
-        var qList = listOf(
+        var qList = mutableListOf(
             QuestionList(
                 "Entertainment: Cartoon & Animations",
                 "multiple",
                 "medium",
                 "What is the fourth book of the Old Testament?",
                 "Numbers",
-                arrayOf("Genesis", "Exodus", "Leviticus")
+                mutableListOf("Genesis", "Exodus", "Leviticus")
             ),
             QuestionList(
                 "General Knowledge",
@@ -31,7 +22,7 @@ object Constants {
                 "easy",
                 "What alcoholic drink is made from molasses?",
                 "Rum",
-                arrayOf("Gin", "Vodka", "Whisky")
+                mutableListOf("Gin", "Vodka", "Whisky")
             ),
             QuestionList(
                 "Geography",
@@ -39,8 +30,7 @@ object Constants {
                 "medium",
                 "What is the capital of Australia?",
                 "Canberra",
-                arrayOf("Sydney", "Melbourne", "Brisbane"
-                )
+                mutableListOf("Sydney", "Melbourne", "Brisbane")
             ),
             QuestionList(
                 "History",
@@ -48,10 +38,27 @@ object Constants {
                 "medium",
                 "Which of the following battles is often considered as marking the beginning of the fall of the Western Roman Empire?",
                 "Battle of Adrianople",
-                arrayOf("Battle of Thessalonica", "Battle of Pollentia", "Battle of Constantinople")
+                mutableListOf("Battle of Thessalonica", "Battle of Pollentia", "Battle of Constantinople")
             )
         )
         return qList
+    }
+
+    fun getDifficulty(): List<Difficulty> {
+        var difficultys = listOf(
+            Difficulty("Easy","easy"),
+            Difficulty("Medium","medium"),
+            Difficulty("Hard","hard")
+        )
+        return difficultys
+    }
+
+    fun getQuestionsTypeList(): List<QuestionsType> {
+        var questionsType = listOf(
+            QuestionsType("Multiple Choice","multiple"),
+            QuestionsType("True / False","boolean")
+        )
+        return questionsType
     }
 
     fun getCategory(): List<Category> {

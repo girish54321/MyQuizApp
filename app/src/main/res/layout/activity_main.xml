@@ -5,15 +5,33 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:gravity="center"
-    tools:context=".MainActivity">
+    tools:context=".screen.MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        app:title="@string/app_name"
+        android:layout_width="match_parent"
+        app:titleTextColor="@color/white"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp">
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/createQuizBtn"
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:gravity="center"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground"
         android:layout_height="wrap_content">
         <ImageView
             android:layout_width="150dp"
@@ -35,6 +53,9 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:gravity="center"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground"
         android:layout_height="wrap_content">
         <ImageView
             android:layout_width="150dp"
@@ -48,6 +69,8 @@
             android:layout_margin="12dp"
             android:layout_height="wrap_content"
             android:text="Any Topic" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
