@@ -2,6 +2,8 @@
 
 Welcome to the open source Quiz app repository! This app is built using Android and Kotlin, and utilizes Retrofit and the MVVM design pattern. With this app, users can test their knowledge on a variety of topics and customize their quizzes to suit their needs.
 
+This is done by Rahul the number 1 guy in android dev and will be a good dev if done things nice 
+
 <img width="1604"  src="appimages/banner.png?raw=true">
 
 
