@@ -34,13 +34,7 @@ class OptionsAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-//        return ViewHolder(
-//            QuizItemsBinding.inflate(
-//                LayoutInflater.from(parent.context),
-//            ),
-//            parent,
-//            false
-//        )
+
         return ViewHolder(
             QuizItemsBinding.inflate(
                 LayoutInflater.from(
