@@ -66,6 +66,8 @@ class QuizScreen : AppCompatActivity(), View.OnClickListener, OptionsAdapter.OnI
 
         binding?.leveText?.text = "LEVEL: ${data.difficulty!!.uppercase()}"
         binding?.questionText?.text = Html.fromHtml(data.question)
+        val fade = AnimationUtils.loadAnimation(this, R.anim.fade_right_to_left)
+        binding?.myView?.startAnimation(fade)
         for (item in data.incorrectAnswers) {
             data.answersList.add(Answers(item))
         }
