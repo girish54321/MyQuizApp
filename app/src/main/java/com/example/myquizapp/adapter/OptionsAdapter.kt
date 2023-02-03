@@ -1,10 +1,12 @@
 package com.example.myquizapp.adapter
 
+import android.content.Context
 import android.graphics.Color
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myquizapp.R
@@ -16,6 +18,7 @@ import com.example.myquizapp.modal.Results
 class OptionsAdapter(
     val items: MutableList<Answers>,
     val result: Results,
+    var context: Context,
     private val listener: OnItemClickLister
     ) : RecyclerView.Adapter<OptionsAdapter.ViewHolder>() {
 
@@ -53,7 +56,7 @@ class OptionsAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var modalItem: Answers =  items[position]
+        val modalItem: Answers =  items[position]
         holder.text.root.text = Html.fromHtml(modalItem.title)
         if (modalItem.isCorrectAnswers){
             holder.text.root.setBackgroundResource(R.drawable.right_answer_view)
@@ -62,6 +65,14 @@ class OptionsAdapter(
         }
         if(result.correctAnswer == modalItem.title && result.completed == true){
             holder.text.root.setBackgroundResource(R.drawable.right_answer_view)
+        }
+        if(result.correctAnswer == modalItem.title && result.completed == true){
+            val bounce = AnimationUtils.loadAnimation(context, R.anim.bounce_horizontal)
+            holder.text.root.startAnimation(bounce)
+        }
+        if(result.completed == null){
+            val fade = AnimationUtils.loadAnimation(context, R.anim.fade_right_to_left)
+            holder.text.root.startAnimation(fade)
         }
     }
 

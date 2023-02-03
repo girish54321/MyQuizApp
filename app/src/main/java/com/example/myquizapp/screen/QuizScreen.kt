@@ -3,11 +3,13 @@ package com.example.myquizapp.screen
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.view.animation.AnimationUtils
 import android.text.Html
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.myquizapp.R
 import com.example.myquizapp.adapter.OptionsAdapter
 import com.example.myquizapp.const.Answers
 import com.example.myquizapp.databinding.ActivityQuizScreenBinding
@@ -64,6 +66,8 @@ class QuizScreen : AppCompatActivity(), View.OnClickListener, OptionsAdapter.OnI
 
         binding?.leveText?.text = "LEVEL: ${data.difficulty!!.uppercase()}"
         binding?.questionText?.text = Html.fromHtml(data.question)
+        val fade = AnimationUtils.loadAnimation(this, R.anim.fade_right_to_left)
+        binding?.myView?.startAnimation(fade)
         for (item in data.incorrectAnswers) {
             data.answersList.add(Answers(item))
         }
@@ -71,7 +75,7 @@ class QuizScreen : AppCompatActivity(), View.OnClickListener, OptionsAdapter.OnI
         data.answersList.shuffle()
         binding?.qptionList?.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        optionsAdapter = data.answersList?.let { OptionsAdapter(it, data, this) }
+        optionsAdapter = data.answersList?.let { OptionsAdapter(it, data, this,this) }
         isLoading = false
         binding?.qptionList?.adapter = optionsAdapter
         optionsAdapter?.notifyDataSetChanged()
@@ -126,6 +130,8 @@ class QuizScreen : AppCompatActivity(), View.OnClickListener, OptionsAdapter.OnI
     }
 
     override fun onItemClick(position: Int) {
+        val bounce = AnimationUtils.loadAnimation(this, R.anim.bounce)
+        binding?.userScore?.startAnimation(bounce)
         onSelectItem(position)
     }
 
