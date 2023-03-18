@@ -159,7 +159,7 @@ class CreateQuiz : AppCompatActivity() {
     }
 
     private fun getQuizQuestion(){
-        var context: Context = this
+        val context: Context = this
         if(!checkFormData()){
             return
         }

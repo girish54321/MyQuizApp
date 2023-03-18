@@ -5,7 +5,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
+import com.example.myquizapp.R
 import com.example.myquizapp.apiClinet.RetrofitInstance
 import com.example.myquizapp.databinding.ActivityMainBinding
 import com.example.myquizapp.helper.BasicAlertDialog
@@ -19,7 +21,9 @@ class MainActivity : AppCompatActivity() {
     private var binding: ActivityMainBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
+        setTheme(R.style.Theme_MyQuizApp)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 

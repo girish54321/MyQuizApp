@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-  
-</selector>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:drawable="@color/splash_screen_background_color"
+        />
+
+    <item
+        android:layout_width="wrap_content"
+        android:bottom="40dp"
+        android:drawable="@drawable/android_12_brand_name"
+        android:gravity="center_horizontal|bottom" />
+
+    <item
+        android:width="160dp"
+        android:height="160dp"
+        android:gravity="center"
+        android:drawable="@drawable/quiz_splash_icon"
+        />
+
+</layer-list>
