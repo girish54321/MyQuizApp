@@ -7,7 +7,7 @@
         <item name="postSplashScreenTheme">@style/Theme.MyQuizApp</item>
         <item name="android:windowLightStatusBar">true</item>
         <!-- API 31+ specific attributes -->
-        <item name="windowSplashScreenAnimatedIcon">@drawable/android_12_splash_icon</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/avd_anim</item>
         <item name="android:windowSplashScreenBrandingImage">@drawable/android_12_brand_name</item>
     </style>
 </resources>
